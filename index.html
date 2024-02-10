@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>HLS Player with Clappr</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/clappr@latest"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" />
+    </head>
+    <body>
+        <div class="container">
+            <div class="row justify-content-md-center">
+                <h1 class="col text-center">HLS Player with Clappr</h1>
+            </div>
+            <main>
+                <form id="frm" class="form-horizontal">
+                    <div class="form-group mb-2 row my-3">
+                        <div class="col input-group input-group-sm pl-4 pr-5">
+                            <input type="text" id="url" class="form-control mx-1" placeholder="Enter HLS URL here">
+                        </div>
+                    </div>
+                    <div class="col input-group-sm text-center">
+                        <button type="submit" class="btn btn-info">Load Video</button>
+                    </div>
+                    <div class="col-12 input-group input-group-sm text-center my-3">
+                        <div id="player"></div>
+                    </div>
+                </form>
+            </main>
+        </div>
+        <script>
+        $('#frm').submit(function(e){
+            e.preventDefault();
+            let url = $('#url').val();
+            if (url == '') {
+                alert("Ooops! I don't see any URL to load!");
+                return;
+            }
+            var playerElement = document.getElementById("player");
+            var player = new Clappr.Player({
+                source: url,
+                parentId: "#player",
+				autoPlay: "true",
+				mute: "true",
+				mimeType: "application/x-mpegURL"
+            });
+        });
+        </script>
+    </body>
+</html>
